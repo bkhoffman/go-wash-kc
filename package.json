@@ -70,6 +70,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-session": "^1.0.2",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
     "sequelize": "^5.8.11"
   }
 }
