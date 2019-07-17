@@ -1,10 +1,10 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bCrypt = require('bcrypt-nodejs');
 const db = require('../models');
+const generateHash = require('./hash');
 
 // Local Sign Up
-passport.use('local-signup', new LocalStrategy(
+passport.use('local', new LocalStrategy(
     // Our user will sign in using an email, rather than a 'username'
     {
         usernameField: 'email',
@@ -12,10 +12,6 @@ passport.use('local-signup', new LocalStrategy(
         passReqToCallback: true
     },
     function(req, email, password, done) {
-
-        var generateHash = function(password) {
-            return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-        };
 
         // When a user tries to sign in this code runs
         db.Users.findOne({
