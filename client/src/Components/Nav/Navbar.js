@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TemporaryDrawer from "components/Drawer/Drawers"
+
 
  const Navbar = ()=>{
     return(
@@ -11,7 +13,7 @@ import { Link } from 'react-router-dom';
                     <li><Link to="/">Packages</Link></li>
                     <li><Link to="/cart">My cart</Link></li>
                     <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
-                    <li><Link to="/login">Login</Link></li>
+                    <li><TemporaryDrawer>Login</TemporaryDrawer></li>
                     <li><Link to="/signup">Signup</Link></li>
                 </ul>
             </div>
