@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        last_login: {
+        lastLogin: {
             type: DataTypes.DATE
         },
         status: {
