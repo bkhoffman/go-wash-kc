@@ -11,6 +11,7 @@ import Payment from "./pages/Payment";
 import Calendar from "./pages/Calendar";
 import logo from './logo.svg';
 import './App.css';
+import TemporaryDrawer from "./components/Drawer/Drawers"
 
 class App extends Component {
   render() {
