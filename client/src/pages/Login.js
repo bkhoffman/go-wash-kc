@@ -4,7 +4,6 @@ import { Input, FormBtn } from "../components/Form";
 
 class Login extends Component {
     state = {
-        users: [],
         userName: "",
         password: ""
       };
