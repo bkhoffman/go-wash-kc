@@ -26,10 +26,10 @@ const About = () => {
 
                     <Card style={{ marginTop: 30, }}>
                         <CardActionArea component="a" href="./Packages.js">
-                            <CardMedia component="img" style={{ height: 140 }} image ="..images/car5.png"/>
+                            <CardMedia component="img" style={{ height: 140 }} image ="/static/media/car5.c08def0c.png"/>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Standard Package
+                                    Go Wash KC
                                     </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     $50.00
@@ -42,13 +42,13 @@ const About = () => {
 
                     <Card style={{ marginTop: 30 }}>
                         <CardActionArea component="a" href="./Packages.js">
-                            <CardMedia component="img" height="140" image="./images/car5.png"/>
+                            <CardMedia component="img" height="140" image="/static/media/car4.fce70109.png"/>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Medium Package
+                                    KC Drip
                                     </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    $100.00
+                                    $200.00
                                     </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -58,13 +58,13 @@ const About = () => {
 
                     <Card style={{ marginTop: 30 }}>
                         <CardActionArea component="a" href="./Packages.js">
-                            <CardMedia component="img" height="140" image="./images/car5.png"/>
+                            <CardMedia component="img" height="500" image="/static/media/car1.dcdaadd1.png"/>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Best Package
+                                    The Boss
                                     </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    $150.00
+                                    $500
                                     </Typography>
                             </CardContent>
                         </CardActionArea>
