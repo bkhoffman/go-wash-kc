@@ -1,32 +1,32 @@
 module.exports = function(sequelize, DataTypes) {
-    let products = sequelize.define("products", {
-        productsId: {
+    let vehicle = sequelize.define("vehicle", {
+        vehicleId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        productPurchase: {
+        vehicleMake: {
             type: DataTypes.STRING,
             notEmpty: true
         },
-        purchaseQuantity: {
-            type: DataTypes.INTEGER,
+        vechicleModel: {
+            type: DataTypes.STRING,
             notEmpty: true
         },
-        productReview: {
+        vechicleLicense: {
             type: DataTypes.STRING
         },
         dateOfService: {
             type: DataTypes.DATE
-        },
+        }
     });
 
-    products.associate = function(models) {
-        products.belongsTo(models.Users, {
+    vehicle.associate = function(models) {
+        vehicle.belongsTo(models.Users, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return products;
+    return vehicle;
 };
