@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import API from "utils/API";
-import { Input, FormBtn } from "components/Form";
+import { Input, FormBtn } from "Components/Form";
 
 const useStyles = makeStyles({
     list: {
