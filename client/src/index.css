@@ -51,3 +51,7 @@ code {
 .item-desc{
   align-self:center;
 }
+
+#brand-logo{
+  float: left;
+}
