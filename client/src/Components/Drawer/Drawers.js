@@ -2,80 +2,72 @@ import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import API from "utils/API";
 import { Input, FormBtn } from "components/Form";
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles({
     list: {
         width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
+    }
 });
 
 const TemporaryDrawer = () => {
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        right: false,
-        users: [],
-            userName: "",
-            password: ""
-    });
 
-    const toggleDrawer = (side, open) => event => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
+    const [open, setOpen] = React.useState(false);
+    const [userName, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    function handleDrawerOpen() {
+        setOpen(true);
+    }
+
+    function handleDrawerClose() {
+        setOpen(false);
+    }
+
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        if (userName && password) {
+            API.saveUser({
+                userName: userName,
+                password: password,
+            })
+                .then(res => console.log(res))
+                .catch(err => console.log(err));
         }
-
-        setState({ ...state, [side]: open });
     };
 
-
-
-        const handleInputChange = event => {
-            const { name, value } = event.target;
-            setState({
-                [name]: value
-            });
-        };
-
-        const handleFormSubmit = event => {
-            event.preventDefault();
-            if (state.userName && state.password) {
-                API.saveUser({
-                    userName: state.userName,
-                    password: state.password,
-                })
-                    .then(res => console.log(res))
-                    .catch(err => console.log(err));
-            }
-        };
-    
 
     const sideList = side => (
         <div
             className={classes.list}
             role="presentation"
-            // onClick={toggleDrawer(side, false)}
-            // onKeyDown={toggleDrawer(side, false)}
         >
             <form className="loginForm">
+                <i className="material-icons">person_outline</i>
                 <Input
-                    value={state.userName}
-                    onChange={handleInputChange}
+                    value={userName}
+                    onChange={event => setUsername(event.target.value)}
                     name="userName"
                     placeholder="UserName (required)"
                 />
+                <i className="material-icons">lock</i>
+
                 <Input
-                    value={state.password}
-                    onChange={handleInputChange}
+                    value={password}
+                    onChange={event => setPassword(event.target.value)}
                     name="password"
                     placeholder="Password (required)"
+                    type="password"
                 />
                 <FormBtn
-                    disabled={!(state.userName && state.password)}
-                    onClick={handleFormSubmit}
+                    disabled={!(userName && password)}
+                    onClick={handleFormSubmit && handleDrawerClose}
                 >
                     Log in
                   </FormBtn>
@@ -83,12 +75,21 @@ const TemporaryDrawer = () => {
         </div>
     );
 
-    return(
+    return (
         <div>
-        <Button onClick={toggleDrawer('right', true)}>Login</Button>
-        <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-            {sideList('right')}
-        </Drawer>
+            <Button onClick={handleDrawerOpen}>Login</Button>
+            <Drawer variant="persistent" anchor="right" open={open}>
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={handleDrawerClose}>
+                    <i className="material-icons">close</i>
+
+          </IconButton>
+                </div>
+                <Divider />
+                {sideList('right')}
+
+            </Drawer>
+
         </div >
     );
 }
