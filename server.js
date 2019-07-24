@@ -3,17 +3,22 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const session = require('express-session');
-// added for passport---remove this comment if working
 const bodyParser = require('body-parser');
-
 const db = require('./models');
 const routes = require('./routes');
 const passport = require('./config/passport');
+const passportRoutes = ('./config/passportRoutes');
 const corsOptions = require('./config/cors.js');
+
+// added from redux example
+// const cookieParser = require('cookie-parser');
+// const config = require('../src/config');
+// const http = require('http');
+// const SocketIo = require('socket.io');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-// added for passport---remove this comment if working
+// added for passport
 // const env = require('dotenv').load();
 
 // Define middleware here
@@ -25,11 +30,20 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// changed 'TBD' to 'keyboard cat' per passport docs --remove if working
-app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+
+// changed 'TBD' to 'jd is a rockstar' per passport docs 
+app.use(session({
+    secret: 'jd is a rockstar',
+    // store: new SequelizeStore({ db: app.locals.sequelize }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors(corsOptions));
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -38,7 +52,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add routes, both API and view
 app.use(routes);
-require('./config/passport');
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

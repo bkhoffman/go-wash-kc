@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
-import { Input, FormBtn } from "../Components/Form";
+import { Input, FormBtn } from "../components/Form";
+
 
 class SignUp extends Component {
     state = {
@@ -11,7 +13,8 @@ class SignUp extends Component {
         lastName: "",
         address: "",
         phone: "",
-        email: ""
+        email: "",
+        signedUp: false
       };
 
       componentDidMount() {
@@ -33,7 +36,7 @@ class SignUp extends Component {
     
       handleFormSubmit = event => {
         event.preventDefault();
-        console.log("whats up hommies")
+        console.log('signUpForm, userName')
         if (this.state.userName && this.state.password) {
           API.saveUser({
             userName: this.state.userName,
@@ -46,11 +49,21 @@ class SignUp extends Component {
 
           })
             .then(res => this.loadUser())
+            .then(this.loadPage())
             .catch(err => console.log(err));
         }
       };
+
+      loadPage = () => {
+        this.setState({
+          signedUp: true
+        });
+      }
     
       render() {
+        if (this.state.signedUp) {
+          return <Redirect to = "/" />;
+        }
         return (
                 <form className="signUpForm">
                   <Input
