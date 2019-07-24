@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { removeItem,addQuantity,subtractQuantity} from '../Components/actions/cartActions'
-import Calendar from './Calendar'
+// import Calendar from './Calendar'
 import DatePicker from 'react-datepicker';
+
+import "react-datepicker/dist/react-datepicker.css";
+
 class Cart extends Component{
 
     //to remove the item completely
@@ -65,15 +68,19 @@ class Cart extends Component{
                     <button className="waves-effect waves-light btn">Checkout</button>
                 </div>
             </div>
-            <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                dateFormat="MMMM d, yyyy h:mm aa"
-                timeCaption="time"
-            />
+            <div>
+                <DatePicker 
+                    placeholderText="Click to schedule"
+                    selected={this.state.startDate}
+                    onSelect={this.handleSelect}
+                    onChange={this.handleChange}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={60}
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    timeCaption="time"
+                />
+            </div>
             {/* <Calendar /> */}
         </div>
        )
