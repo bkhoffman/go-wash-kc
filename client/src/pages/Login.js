@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
 
 class Login extends Component {
     state = {
-        users: [],
         userName: "",
         password: ""
       };
@@ -19,11 +19,11 @@ class Login extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.userName && this.state.password) {
-          API.saveUser({
+          API.getUser({
             userName: this.state.userName,
             password: this.state.password,
           })
-            .then(res => this.loadUser())
+            .then(res => this.loadPage())
             .catch(err => console.log(err));
         }
       };

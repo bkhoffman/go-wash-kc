@@ -12,7 +12,7 @@ code {
     monospace;
 } */
 .nav-wrapper{
-  background-color: black;
+  background-color: rgb(17, 27, 119);
 }
 .box{
   display: flex;
@@ -50,4 +50,8 @@ code {
 }
 .item-desc{
   align-self:center;
+}
+
+#brand-logo{
+  float: left;
 }
