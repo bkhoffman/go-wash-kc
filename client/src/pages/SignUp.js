@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
-import { throwStatement } from '@babel/types';
+
 
 class SignUp extends Component {
     state = {

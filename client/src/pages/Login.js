@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import API from "../utils/API";
-import { Input, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../Components/Form";
 
 class Login extends Component {
     state = {
