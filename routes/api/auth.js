@@ -3,15 +3,15 @@ const passport = require('../../config/passport');
 const authController = require('../../controllers/auth');
 
 router.route('/signup')
-    .post(authController.signUp);
+    .post(authController.create);
 
 router.use(passport.authenticate('local'));
 
 // Matches with '/api/auth/login'
 router.route("/login")
-    .post(authController.login);
+    .post(authController.findOne);
 
-router.route("/")
-    .get(authController.home);
+// router.route("/")
+//     .get(authController.);
 
 module.exports = router;

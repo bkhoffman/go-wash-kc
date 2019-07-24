@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
-import Axios from 'axios';
+import { throwStatement } from '@babel/types';
 
 class SignUp extends Component {
     state = {
@@ -48,17 +49,19 @@ class SignUp extends Component {
 
           })
             .then(res => this.loadUser())
+            .then(this.loadPage())
             .catch(err => console.log(err));
         }
       };
 
       loadPage = () => {
-        signedUp = true
+        this.setState({
+          signedUp: true
+        });
       }
     
       render() {
-
-        if (signedUp) {
+        if (this.state.signedUp) {
           return <Redirect to = "/" />;
         }
         return (
