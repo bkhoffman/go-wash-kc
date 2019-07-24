@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { removeItem,addQuantity,subtractQuantity} from '../components/actions/cartActions'
+import { removeItem,addQuantity,subtractQuantity} from '../Components/actions/cartActions'
 import Calendar from './Calendar'
 class Cart extends Component{
 
