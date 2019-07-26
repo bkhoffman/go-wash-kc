@@ -74,7 +74,7 @@ db.sequelize
     .authenticate()
     .then(() => {
         // change force to ({ force: FORCE_SCHEMA}) to prevent reset of MySQL database
-        db.sequelize.sync({ force: FORCE_SCHEMA }).then(() => {
+        db.sequelize.sync({ force: true }).then(() => {
             console.log(`🌎 ==> API server now on port ${PORT}!`); // eslint-disable-line no-console
             app.emit('appStarted');
         });

@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     products.associate = function(models) {
-        products.belongsTo(models.Users, {
+        products.belongsTo(models.vehicle, {
             foreignKey: {
                 allowNull: false
             }
