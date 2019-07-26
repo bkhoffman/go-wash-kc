@@ -5,14 +5,10 @@
     "author": "TBD",
     "license": "MIT",
     "main": "server.js",
-<<<<<<< HEAD
-   
-=======
 
     "engines": {
         "node": "12.x"
     },
->>>>>>> be1228468a955f7ea5ef2df2e2135b8d24720bd2
     "repository": {
         "type": "git",
         "url": "git+https://github.com/TBD"
