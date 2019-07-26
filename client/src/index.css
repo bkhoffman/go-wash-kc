@@ -67,6 +67,6 @@ code {
   border-width: 1px;
   border-color: blue;  */
 }
-.react-datepicker__input-container{
-  width: fit-content;
+.calBorder{
+  padding: 5%;
 }

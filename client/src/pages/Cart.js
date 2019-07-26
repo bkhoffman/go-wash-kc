@@ -6,13 +6,10 @@ import API from "../utils/API";
 import { removeItem } from '../Components/actions/cartActions'
 //{ removeItem,addQuantity,subtractQuantity}**removed from line above if we need to add back
 // import Calendar from './Calendar'
-
 import { Input, FormBtn } from "../Components/Form";
-
+//date picker css and packages
 import DatePicker from 'react-datepicker';
-// import setMinutes from 'date-fns/setMinutes'
-// import setHours from 'date-fns/setHours'
-
+import { setMinutes, setHours } from 'date-fns'
 import "react-datepicker/dist/react-datepicker.css";
 
 class Cart extends Component {
@@ -25,7 +22,7 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: new Date()
+            startDate: null
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -56,14 +53,15 @@ class Cart extends Component {
             .catch(err => console.log(err));
     };
 
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // };
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
     //Checkout button
-    handleFormSubmit = event => {
+    handleCheckoutSubmit = event => {
         event.preventDefault();
         console.log("whats up hommies")
         if (this.state.userName && this.state.password) {
@@ -116,12 +114,12 @@ class Cart extends Component {
             ) :
 
             (
-                <p>Nothing.</p>
+                <p>No packages selected</p>
             )
         return (
             <div className="container">
                 <div className="cart">
-                    <h5>You have ordered:</h5>
+                    <h5>Your packages:</h5>
                     <ul className="collection">
                         {addedItems}
                     </ul>
@@ -130,29 +128,29 @@ class Cart extends Component {
                         <br></br>
                     </div>
                     <br></br>
-                    <button className="waves-effect waves-light btn checkout" onClick={() => { this.showFunction() }}>Schedule Appointment</button>
+                    <button className="waves-effect waves-light btn schedule" onClick={() => { this.showFunction() }}>Schedule Appointment</button>
                     <br></br><br></br>
                     <div className="collection" id="appointment" display = "none">
                         <form className="appointmentForm">
                             <div className = "datePicker">
                             <DatePicker
-                                placeholderText="Click to schedule"
+                                placeholderText="     Click to Schedule"
                                 selected={this.state.startDate}
                                 // onSelect={this.handleSelect}
                                 onChange={this.handleChange}
                                 showTimeSelect
-                                // minTime={setHours(setMinutes(new Date(), 0),8)}
-                                // maxTime={setHours(setMinutes(new Date(), 0), 16)}
+                                minTime={setHours(setMinutes(new Date(), 0),8)}
+                                maxTime={setHours(setMinutes(new Date(), 0), 16)}
                                 timeFormat="p"
                                 timeIntervals={60}
                                 dateFormat="MMMM d, yyyy h:mm aa"
                                 timeCaption="Time"
-                                className="red-border"
+                                className="calBorder"
                             />
                             </div>
                             <Input
                                 value={this.state.firstName}
-                                // onChange={this.handleInputChange}
+                                onChange={this.handleInputChange}
                                 name="firstName"
                                 placeholder="First Name (required)"
                             />
@@ -186,17 +184,20 @@ class Cart extends Component {
                                 name="location"
                                 placeholder="Location of Service (required)"
                             />
-                            <button className="waves-effect waves-light btn checkout">Checkout</button>
-                            {/* <FormBtn
-                            disabled={!(this.state.userName && this.state.password)}
-                            onClick={this.handleFormSubmit}
-                            >
-                                Create Account
-                            </FormBtn> */}
+                            <FormBtn className="waves-effect waves-light btn checkout" 
+                                disabled={!(
+                                    this.state.firstName && 
+                                    this.state.lastName &&
+                                    this.state.carMake &&
+                                    this.state.carModel &&
+                                    this.state.licence &&
+                                    this.state.location
+                                    )}
+                                onClick={this.handleCheckoutSubmit}>Checkout
+                            </FormBtn>
                         </form>
                     </div>
                 </div>
-                {/* <Calendar /> */}
             </div>
         )
     }
