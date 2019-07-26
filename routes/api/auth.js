@@ -9,9 +9,9 @@ router.use(passport.authenticate('local'));
 
 // Matches with '/api/auth/login'
 router.route("/login")
-    .get(authController.findOne);
+    .post(authController.findOne);
 
-router.route("/")
-    .get(authController.findOne);
+// router.route("/")
+//     .get(authController.);
 
 module.exports = router;
