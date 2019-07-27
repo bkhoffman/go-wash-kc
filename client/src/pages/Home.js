@@ -7,18 +7,25 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { black } from "ansi-colors";
+// import drawerImage from "../../resources/images/drawer.jpg";
 
-
+// const backgroundImage: `url($https:\\thumbs.gfycat.com\NauticalAncientIndianglassfish-size_restricted.gif)`
+// *eslint; no-unused-expressions; ["error", { "allowShortCircuit": true}]*
+var sectionStyle = {
+    backgroundColor: "black",
+    backgroundImage: "url(https://thumbs.gfycat.com/NauticalAncientIndianglassfish-size_restricted.gif)"
+  };
 
 const Home = () => {
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={sectionStyle}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
 
                     <Paper style={{ marginTop: 30 }}>
                         <Typography variant="h1">
-                            Cool Catch Phrase Here!!
+                            Clean your car where you are!!
                         </Typography>
                     </Paper>
                 </Grid>
@@ -72,7 +79,7 @@ const Home = () => {
                 </Grid>
             </Grid>
         </Container>
-    )
+   )
 }
 
 export default Home;
