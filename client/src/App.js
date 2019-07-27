@@ -9,9 +9,9 @@ import About from "./pages/About";
 import Packages from "./pages/Packages";
 import Payment from "./pages/Payment";
 import Calendar from "./pages/Calendar";
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import TemporaryDrawer from "./Components/Drawer/Drawers"
+// import TemporaryDrawer from "./Components/Drawer/Drawers"
 
 class App extends Component {
   render() {

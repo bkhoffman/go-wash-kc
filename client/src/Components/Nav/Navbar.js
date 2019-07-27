@@ -7,7 +7,7 @@ import TemporaryDrawer from "Components/Drawer/Drawers"
     return(
         <nav className="nav-wrapper">
             <div className="container">
-                <Link to="/" id="brand-logo">Go Wash KC</Link>
+                <Link to="/" id="brand-logo"></Link>
                 
                 <ul className="right">
                     <li><Link to="/">Home</Link></li>

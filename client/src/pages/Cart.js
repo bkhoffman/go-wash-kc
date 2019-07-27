@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import API from "../utils/API";
-
-// /Users/Brad/git/go-wash-kc/client/src/index.css
 import { removeItem } from '../Components/actions/cartActions'
 //{ removeItem,addQuantity,subtractQuantity}**removed from line above if we need to add back
-// import Calendar from './Calendar'
+
 import { Input, FormBtn } from "../Components/Form";
 //date picker css and packages
 import DatePicker from 'react-datepicker';
@@ -35,6 +33,7 @@ class Cart extends Component {
     //form info
     state = {
         // User: [],
+        startDate: "", //trying to grab the date value
         firstName: "",
         lastName: "",
         carMake: "",
@@ -64,8 +63,10 @@ class Cart extends Component {
     handleCheckoutSubmit = event => {
         event.preventDefault();
         console.log("whats up hommies")
+        console.log("Date " + this.state.startDate)
         if (this.state.userName && this.state.password) {
             API.saveUser({
+                startDate: this.state.startDate, //trying to grab the date value
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 carMake: this.state.carMake,
@@ -130,7 +131,7 @@ class Cart extends Component {
                     <br></br>
                     <button className="waves-effect waves-light btn schedule" onClick={() => { this.showFunction() }}>Schedule Appointment</button>
                     <br></br><br></br>
-                    <div className="collection" id="appointment" display = "none">
+                    <div id="appointment" display = "none">
                         <form className="appointmentForm">
                             <div className = "datePicker">
                             <DatePicker

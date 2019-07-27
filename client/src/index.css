@@ -12,6 +12,7 @@ code {
     monospace;
 } */
 .nav-wrapper{
+  color: white;
   background-color: rgb(17, 27, 119);
 }
 .box{
@@ -69,4 +70,7 @@ code {
 }
 .calBorder{
   padding: 5%;
+}
+.MuiButton-label{
+  color: white;
 }
