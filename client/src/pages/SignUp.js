@@ -62,9 +62,10 @@ class SignUp extends Component {
           return <Redirect to = "/" />;
         }
         if (this.state.alertmessage) {
+          const newLocal = <h3 value={this.state.alertmessage}> Email already used.Please login or use a different email </h3>;
           return (
             <div>
-              <h3 value = {this.state.alertmessage}> Email already used.  Please login or use a different email </h3>
+              newLocal
               <form className="signUpForm">
                 <Input
                   value={this.state.userName}
