@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     let products = sequelize.define("products", {
-        productsId: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     products.associate = function(models) {
-        products.belongsTo(models.Users, {
+        products.belongsTo(models.vehicle, {
             foreignKey: {
                 allowNull: false
             }

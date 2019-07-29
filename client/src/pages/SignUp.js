@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
-import { Input, FormBtn } from "../Components/Form";
-
+import { Input, FormBtn } from "../components/Form";
+import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
     state = {
@@ -14,19 +14,10 @@ class SignUp extends Component {
         address: "",
         phone: "",
         email: "",
-        signedUp: false
+        signedUp: false,
+        alertmessage: false
       };
 
-      componentDidMount() {
-        this.loadUser();
-      }
-      
-      loadUser = () => {
-        API.getUser()
-          .then(res => this.setState({ User: res.data}))
-          .catch(err => console.log(err));
-      };
-      
       handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -46,25 +37,90 @@ class SignUp extends Component {
             address: this.state.address,
             phone: this.state.phone,
             email: this.state.email
-
           })
-            .then(res => this.loadUser())
-            .then(this.loadPage())
-            .catch(err => console.log(err));
+            .then(({data: user}) => {
+              API.localSetUser(user);
+              this.setState({
+                signedUp: true
+              });
+            })
+            .catch((err) => {
+              this.alert()
+              console.log('err.msg', err.response.data.msg);
+            });
         }
       };
 
-      loadPage = () => {
+      alert = () => {
         this.setState({
-          signedUp: true
-        });
+          alertmessage: true
+        })
       }
     
       render() {
         if (this.state.signedUp) {
           return <Redirect to = "/" />;
         }
+        if (this.state.alertmessage) {
+          const newLocal = <h3 value={this.state.alertmessage}> Email already used.Please login or use a different email </h3>;
+          return (
+            <div>
+              newLocal
+              <form className="signUpForm">
+                <Input
+                  value={this.state.userName}
+                  onChange={this.handleInputChange}
+                  name="userName"
+                  placeholder="Username (required)"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  placeholder="Password (required)"
+                />
+                <Input
+                  value={this.state.firstName}
+                  onChange={this.handleInputChange}
+                  name="firstName"
+                  placeholder="First Name (required)"
+                />
+                <Input
+                  value={this.state.lastName}
+                  onChange={this.handleInputChange}
+                  name="lastName"
+                  placeholder="Last Name (required)"
+                />
+                <Input
+                  value={this.state.address}
+                  onChange={this.handleInputChange}
+                  name="address"
+                  placeholder="Full Address"
+                />
+                <Input
+                  value={this.state.phone}
+                  onChange={this.handleInputChange}
+                  name="phone"
+                  placeholder="Phone Number"
+                />
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                />               
+                <FormBtn
+                  disabled={!(this.state.userName && this.state.password)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Create Account
+                </FormBtn>
+              </form>
+            </div>
+          );
+        }
         return (
+              <div>
                 <form className="signUpForm">
                   <Input
                     value={this.state.userName}
@@ -115,6 +171,7 @@ class SignUp extends Component {
                     Create Account
                   </FormBtn>
                 </form>
+              </div>
         );
       }
 }
