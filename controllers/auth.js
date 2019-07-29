@@ -10,11 +10,11 @@ module.exports = {
         db.Users
             .findOrCreate({
                 where: {
-                    userName: req.body.userName
+                    email: req.body.email
                 },
                 defaults: user
             })
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => dbModel[1] ? res.json(dbModel[0]) : res.status(400).json({ msg: 'Email already used', err: null }))
             .catch(err => res.status(422).json(err));
     },
     update: function(req, res) {
@@ -23,15 +23,8 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findOne: function(req, res) {
-        db.Users
-            .findOne({
-                where: {
-                    userName: req.body.userName
-                }
-            })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+    login: function(req, res) {
+        res.json(req.user);
     },
 
 
