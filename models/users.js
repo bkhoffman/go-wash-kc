@@ -1,10 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     let Users = sequelize.define("Users", {
-        usersId: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
         firstName: {
             type: DataTypes.STRING,
             notEmpty: true
@@ -48,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
     Users.associate = function(models) {
         //  I do not beleive we will delete any users, 
         //  but if we do we will also delect any product data associated with that user.
-        Users.hasMany(models.products, {
+        Users.hasMany(models.vehicle, {
             onDelete: "cascade"
         });
     };

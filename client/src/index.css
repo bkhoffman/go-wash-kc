@@ -11,62 +11,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
-.nav-wrapper{
-  background-color: rgb(17, 27, 119);
-}
-.box{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap
-}
-.material-icons{
-  font-size: 2.4em;
-  cursor: pointer;
-}
-.card{
-  width: 300px;
-}
-.card .card-image .card-title{
-  color: black;
-  font-weight: 400
-}
-.cart{
-  margin-top:40px;
-}
-.collection .collection-item{
-  display: flex;
-}
-.collection-item.avatar .title {
-  font-size: 20px;
-  font-weight: 500;
-  color: black;
-  display: block;
-  margin-bottom: 20px;
-  
-}
-.collection .collection-item img{
-  width: 150px;
-  margin-right: 25px;
-}
-.item-desc{
-  align-self:center;
+
+.nav-wrapper {
+    background-color: rgb(17, 27, 119);
 }
 
-#brand-logo{
-  float: left;
+.box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
 }
-.appointmentForm{
-  padding: 1%;
+
+.material-icons {
+    font-size: 2.4em;
+    cursor: pointer;
 }
-#appointment{
-  display: none;
+
+.card {
+    width: 300px;
 }
-.react-datepicker-wrapper{
-  padding: 1%;
-  /* border-style: solid;
+
+.card .card-image .card-title {
+    color: black;
+    font-weight: 400
+}
+
+.cart {
+    margin-top: 40px;
+}
+
+.collection .collection-item {
+    display: flex;
+}
+
+.collection-item.avatar .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.collection .collection-item img {
+    width: 150px;
+    margin-right: 25px;
+}
+
+.item-desc {
+    align-self: center;
+}
+
+#brand-logo {
+    float: left;
+}
+
+.appointmentForm {
+    padding: 1%;
+}
+
+#appointment {
+    display: none;
+}
+
+.react-datepicker-wrapper {
+    padding: 1%;
+    /* border-style: solid;
   border-width: 1px;
   border-color: blue;  */
 }
-.react-datepicker__input-container{
-  width: fit-content;
+
+.react-datepicker__input-container {
+    width: fit-content;
 }
