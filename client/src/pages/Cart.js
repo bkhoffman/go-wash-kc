@@ -98,7 +98,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
         } else {
           x.style.display = "block";
         }
-      }
+    }
 
 
     render() {
