@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { func } from "prop-types";
 
 const USER_KEY = 'user';
 
@@ -18,5 +19,16 @@ export default {
     // Saves a user to the database
     saveUser: function(user) {
         return axios.post("./api/v1/auth/signup", user);
+    },
+    // Saves vehicle information to database
+    saveVehicle: function(vehicle, user) {
+        return axios.post("./api/v1/vehicle/cart", vehicle, user);
+    },
+    // Saves product information to database
+    saveProduct: function() {
+        return axios.post("./api/v1/products/cart")
+    },
+    getProduct: function(user) {
+        return axios.get("./api/v1/products/", user)
     }
 };

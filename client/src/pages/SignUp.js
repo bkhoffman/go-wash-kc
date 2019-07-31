@@ -15,7 +15,10 @@ class SignUp extends Component {
         phone: "",
         email: "",
         signedUp: false,
-        alertmessage: false
+        alertmessage: false,
+        vehicleMake: "",
+        vehicleModel: "",
+        vehicleLicense: "",
       };
 
       handleInputChange = event => {
@@ -27,7 +30,7 @@ class SignUp extends Component {
     
       handleFormSubmit = event => {
         event.preventDefault();
-        console.log('signUpForm, userName')
+        // console.log('signUpForm, userName')
         if (this.state.userName && this.state.password) {
           API.saveUser({
             userName: this.state.userName,
@@ -38,6 +41,11 @@ class SignUp extends Component {
             phone: this.state.phone,
             email: this.state.email
           })
+            .then(API.saveVehicle({
+              vehicleMake: this.state.vehicleMake,
+              vehicleModel: this.state.vehicleModel,
+              vehicleLicense: this.state.vehicleLicense
+            }))
             .then(({data: user}) => {
               API.localSetUser(user);
               this.setState({
@@ -45,13 +53,13 @@ class SignUp extends Component {
               });
             })
             .catch((err) => {
-              this.alert()
+              this.alertMsg()
               console.log('err.msg', err.response.data.msg);
             });
         }
       };
 
-      alert = () => {
+      alertMsg = () => {
         this.setState({
           alertmessage: true
         })
@@ -108,7 +116,25 @@ class SignUp extends Component {
                   onChange={this.handleInputChange}
                   name="email"
                   placeholder="Email"
-                />               
+                />
+                <Input
+                  value={this.state.vehicleMake}
+                  onChange={this.handleInputChange}
+                  name="vehicleMake"
+                  placeholder="Car Make"
+                />
+                <Input
+                  value={this.state.vehicleModel}
+                  onChange={this.handleInputChange}
+                  name="vehicleModel"
+                  placeholder="Car Model"
+                />   
+                <Input
+                  value={this.state.vehicleLicense}
+                  onChange={this.handleInputChange}
+                  name="vehicleLicense"
+                  placeholder="Car License"
+                />                 
                 <FormBtn
                   disabled={!(this.state.userName && this.state.password)}
                   onClick={this.handleFormSubmit}
@@ -164,7 +190,25 @@ class SignUp extends Component {
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="Email"
-                  />               
+                  />
+                  <Input
+                    value={this.state.vehicleMake}
+                    onChange={this.handleInputChange}
+                    name="vehicleMake"
+                    placeholder="Car Make"
+                  />
+                  <Input
+                    value={this.state.vehicleModel}
+                    onChange={this.handleInputChange}
+                    name="vehicleModel"
+                    placeholder="Car Model"
+                  />   
+                  <Input
+                    value={this.state.vehicleLicense}
+                    onChange={this.handleInputChange}
+                    name="vehicleLicense"
+                    placeholder="Car License"
+                  />                 
                   <FormBtn
                     disabled={!(this.state.userName && this.state.password)}
                     onClick={this.handleFormSubmit}

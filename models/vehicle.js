@@ -1,19 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
     let vehicle = sequelize.define("vehicle", {
-        // vehicleId: {
-        //     type: DataTypes.INTEGER,
-        //     primaryKey: true,
-        //     autoIncrement: true
-        // },
         vehicleMake: {
             type: DataTypes.STRING,
             notEmpty: true
         },
-        vechicleModel: {
+        vehicleModel: {
             type: DataTypes.STRING,
             notEmpty: true
         },
-        vechicleLicense: {
+        vehicleLicense: {
+            type: DataTypes.STRING
+        },
+        vehicleLocation: {
             type: DataTypes.STRING
         },
         dateOfService: {

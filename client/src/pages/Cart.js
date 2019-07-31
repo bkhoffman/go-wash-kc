@@ -17,6 +17,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class Cart extends Component {
 
+    //form info
+    state = {
+        firstName: "",
+        lastName: "",
+        vehicleMake: "",
+        vehicleModel: "",
+        vehicleLicence: "",
+        location: ""
+    };
+
     //to remove the item completely
     handleRemove = (id) => {
         this.props.removeItem(id);
@@ -30,54 +40,36 @@ class Cart extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(date) {
-        this.setState({
-            startDate: date
-        });
-    }
-    //form info
-    state = {
-        // User: [],
-        firstName: "",
-        lastName: "",
-        carMake: "",
-        carModel: "",
-        licence: "",
-        location: ""
-    };
+    handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+
+    // handleChange(date) {
+    //     this.setState({
+    //         startDate: date
+    //     });
+    // }
+
 
     componentDidMount() {
-        this.loadUser();
-    }
-
-    loadUser = () => {
-        API.localgetUser()
-            .then(res => this.setState({ User: res.data }))
-            .catch(err => console.log(err));
+        API.localGetUser()
     };
 
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // };
-    //Checkout button
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("whats up hommies")
-        if (this.state.userName && this.state.password) {
-            API.saveUser({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                carMake: this.state.carMake,
-                carModel: this.state.carModel,
-                licence: this.state.licence,
-                location: this.state.location
+        console.log(this.state.vehicleLicence, this.state.vehicleMake, this.state.vehicleModel)
+            API.saveAppointment({
+                // firstName: this.state.firstName,
+                // lastName: this.state.lastName,
+                vehicleMake: this.state.vehicleMake,
+                vehicleModel: this.state.vehicleModel,
+                vehicleLicence: this.state.vehicleLicence,
+                // location: this.state.location
             })
-                .then(res => this.loadUser())
+                .then(console.log("this happened"))
+                    // res => this.loadUser())
                 .catch(err => console.log(err));
-        }
+        
     };
 
     showFunction = () => {
@@ -152,47 +144,52 @@ class Cart extends Component {
                             </div>
                             <Input
                                 value={this.state.firstName}
-                                // onChange={this.handleInputChange}
+                                onChange={this.handleChange}
                                 name="firstName"
                                 placeholder="First Name (required)"
                             />
                             <Input
                                 value={this.state.lastName}
-                                onChange={this.handleInputChange}
+                                onChange={this.handleChange}
                                 name="lastName"
                                 placeholder="Last Name (required)"
                             />
                             <Input
-                                value={this.state.carMake}
-                                onChange={this.handleInputChange}
-                                name="carMake"
+                                value={this.state.vehicleMake}
+                                onChange={this.handleChange}
+                                name="vehicleMake"
                                 placeholder="Car Make (required)"
                             />
                             <Input
-                                value={this.state.carModel}
-                                onChange={this.handleInputChange}
-                                name="carModel"
+                                value={this.state.vehicleModel}
+                                onChange={this.handleChange}
+                                name="vehicleModel"
                                 placeholder="Car Model (required)"
                             />
                             <Input
-                                value={this.state.userLicencePlate}
-                                onChange={this.handleInputChange}
-                                name="licence"
+                                value={this.state.vehicleLicence}
+                                onChange={this.handleChange}
+                                name="vehicleLicence"
                                 placeholder="Licence Plate Number (required)"
                             />
                             <Input
-                                value={this.state.userLocation}
-                                onChange={this.handleInputChange}
+                                value={this.state.vehicleLocation}
+                                onChange={this.handleChange}
                                 name="location"
                                 placeholder="Location of Service (required)"
                             />
-                            <button className="waves-effect waves-light btn checkout">Checkout</button>
-                            {/* <FormBtn
+                            <FormBtn 
+                                className="waves-effect waves-light btn checkout"
+                                onClick={this.handleFormSubmit}
+                            >
+                                Checkout
+                            </FormBtn>
+                            {/* 
                             disabled={!(this.state.userName && this.state.password)}
-                            onClick={this.handleFormSubmit}
+                            
                             >
                                 Create Account
-                            </FormBtn> */}
+                             */}
                         </form>
                     </div>
                 </div>
