@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TemporaryDrawer from "Components/Drawer/Drawers"
+import TemporaryDrawer from "components/Drawer/Drawers"
 
 
  const Navbar = ()=>{

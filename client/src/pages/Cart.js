@@ -56,7 +56,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     }
 
     loadUser = () => {
-        API.getUser()
+        API.localgetUser()
             .then(res => this.setState({ User: res.data }))
             .catch(err => console.log(err));
     };
