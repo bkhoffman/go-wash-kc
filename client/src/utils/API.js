@@ -1,16 +1,22 @@
 import axios from "axios";
 
+const USER_KEY = 'user';
+
 export default {
-    // loads users
-    loadUser: function(userName) {
-        return axios.get("/api/v1/auth/login/" + userName);
+    // saves user locally
+    localSetUser: function(user) {
+        sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    },
+    // Gets locally saved user
+    localGetUser: function() {
+        return JSON.parse(sessionStorage.getItem(USER_KEY));
     },
     // Gets the user with the given id
-    getUser: function(userName) {
-        return axios.post("./api/v1/auth/signup/" + userName);
+    getUser: function(user) {
+        return axios.post("./api/v1/auth/login", user);
     },
     // Saves a user to the database
-    saveUser: function(User) {
-        return axios.post("./api/v1/auth/signup", User);
+    saveUser: function(user) {
+        return axios.post("./api/v1/auth/signup", user);
     }
 };

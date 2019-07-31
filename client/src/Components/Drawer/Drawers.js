@@ -4,8 +4,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import API from "utils/API";
+// import login from "../../pages/Login";
 
-import { Input, FormBtn } from "Components/Form";
+import { Input, FormBtn } from "components/Form";
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -27,8 +28,9 @@ const TemporaryDrawer = () => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
-    const [userName, setUsername] = React.useState("");
+    const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [alertMessage, setAlertMessage] = React.useState(false);
 
     function handleDrawerOpen() {
         setOpen(true);
@@ -40,15 +42,25 @@ const TemporaryDrawer = () => {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        if (userName && password) {
-            API.saveUser({
-                userName: userName,
+        if (email && password) {
+            API.getUser({
+                email: email,
                 password: password,
             })
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
+            .then(({ data: user}) => {
+                API.localSetUser(user);
+                handleDrawerClose()
+              })
+              .catch(err => {
+                alert()
+                console.log(err)
+              });
         }
     };
+
+    alert = () => {
+       setAlertMessage(true);
+      }
 
 
     const sideList = side => (
@@ -59,10 +71,10 @@ const TemporaryDrawer = () => {
             <form className="loginForm">
                 <span className="material-icons">person_outline</span>
                 <Input
-                    value={userName}
-                    onChange={event => setUsername(event.target.value)}
-                    name="userName"
-                    placeholder="UserName (required)"
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
+                    name="email"
+                    placeholder="Email (required)"
                 />
                 <i className="material-icons">lock</i>
 
@@ -74,8 +86,8 @@ const TemporaryDrawer = () => {
                     type="password"
                 />
                 <FormBtn
-                    disabled={!(userName && password)}
-                    onClick={handleFormSubmit && handleDrawerClose}
+                    disabled={!(email && password)}
+                    onClick={handleFormSubmit}
                 >
                     Log in
                   </FormBtn>
@@ -83,7 +95,10 @@ const TemporaryDrawer = () => {
         </div>
     );
 
+
+
     return (
+
         <div>
             <Button onClick={handleDrawerOpen}>Login</Button>
             <Drawer variant="persistent" anchor="right" open={open}>
