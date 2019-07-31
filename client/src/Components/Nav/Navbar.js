@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TemporaryDrawer from "components/Drawer/Drawers"
+import TemporaryDrawer from "Components/Drawer/Drawers"
 
 
  const Navbar = ()=>{
     return(
         <nav className="nav-wrapper">
             <div className="container">
-                <Link to="/" id="brand-logo"></Link>
+                <Link to="/" id="brand-logo">Go Wash KC</Link>
                 
                 <ul className="right">
                     <li><Link to="/">Home</Link></li>

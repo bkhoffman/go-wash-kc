@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import API from "utils/API";
 // import login from "../../pages/Login";
 
-import { Input, FormBtn } from "components/Form";
+import { Input, FormBtn } from "Components/Form";
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 
