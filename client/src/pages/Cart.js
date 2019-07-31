@@ -52,14 +52,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     }
 
     componentDidMount() {
-        this.loadUser();
+        API.getUser();
     }
-
-    loadUser = () => {
-        API.localgetUser()
-            .then(res => this.setState({ User: res.data }))
-            .catch(err => console.log(err));
-    };
 
     handleInputChange = event => {
         const { name, value } = event.target;
