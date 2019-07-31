@@ -1,19 +1,13 @@
 /* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  background: linear-gradient(90deg, rgba(0,220,255,1) 1%, rgba(255,255,255,1) 32%, rgba(111,49,146,1) 48%, rgba(235,255,254,1) 65%, rgba(0,220,255,1) 85%);
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-} */
-.nav-wrapper{
-  background-color: rgb(17, 27, 119);
 }
+.nav-wrapper{
+  background-color: rgb(212, 27, 83)}
 .box{
   display: flex;
   justify-content: space-between;
@@ -27,7 +21,7 @@ code {
   width: 300px;
 }
 .card .card-image .card-title{
-  color: black;
+  color: white;
   font-weight: 400
 }
 .cart{
@@ -54,7 +48,18 @@ code {
 
 #brand-logo{
   float: left;
+  font-style: italic;
+  font-size: 30px;
+  font-weight: 800;
 }
+#paper-header{
+ font-size: 100px
+}
+#paper-header-text{
+ font-size: 50px;
+ font: italic small-caps bold 50px cursive;
+}
+
 .appointmentForm{
   padding: 1%;
 }

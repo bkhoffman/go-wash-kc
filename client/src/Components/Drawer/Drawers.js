@@ -13,6 +13,13 @@ import IconButton from '@material-ui/core/IconButton';
 const useStyles = makeStyles({
     list: {
         width: 250,
+       },
+
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 8px',
+        justifyContent: 'flex-start'
     }
 });
 
@@ -50,7 +57,7 @@ const TemporaryDrawer = () => {
             role="presentation"
         >
             <form className="loginForm">
-                <i className="material-icons">person_outline</i>
+                <span className="material-icons">person_outline</span>
                 <Input
                     value={userName}
                     onChange={event => setUsername(event.target.value)}
@@ -82,7 +89,7 @@ const TemporaryDrawer = () => {
             <Drawer variant="persistent" anchor="right" open={open}>
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                    <i className="material-icons">close</i>
+                    <i className="material-icons">chevron_right</i>
 
           </IconButton>
                 </div>

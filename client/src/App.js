@@ -12,6 +12,7 @@ import Calendar from "./pages/Calendar";
 import logo from './logo.svg';
 import './App.css';
 import TemporaryDrawer from "./Components/Drawer/Drawers"
+import User from 'pages/User';
 
 class App extends Component {
   render() {
@@ -24,7 +25,7 @@ class App extends Component {
                     <Route path="/cart" component={Cart}/>
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={Signup} />
-                    <Route exact path="/about" component={About} />
+                    <Route exact path="/about" component={User} />
                     <Route exact path="/packages" component={Packages} />
                     <Route exact path="/paynow" component={Payment} />
                     <Route exact path="/calendar" component={Calendar} />

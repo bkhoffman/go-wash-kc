@@ -87,7 +87,7 @@ class Cart extends Component {
         } else {
           x.style.display = "block";
         }
-      }
+    }
 
 
     render() {
