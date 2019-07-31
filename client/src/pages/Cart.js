@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import API from "../utils/API";
 
 // /Users/Brad/git/go-wash-kc/client/src/index.css
-import { removeItem } from '../Components/actions/cartActions'
+import { removeItem } from '../components/actions/cartActions'
 //{ removeItem,addQuantity,subtractQuantity}**removed from line above if we need to add back
 // import Calendar from './Calendar'
 
-import { Input, FormBtn } from "../Components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 import DatePicker from 'react-datepicker';
 // import setMinutes from 'date-fns/setMinutes'
@@ -51,7 +51,7 @@ class Cart extends Component {
     }
 
     loadUser = () => {
-        API.getUser()
+        API.localgetUser()
             .then(res => this.setState({ User: res.data }))
             .catch(err => console.log(err));
     };

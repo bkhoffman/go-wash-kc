@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TemporaryDrawer from "Components/Drawer/Drawers";
-import brandLogo from "../../images/Logo4.png";
-
+import TemporaryDrawer from "components/Drawer/Drawers"
 
 
  const Navbar = ()=>{
