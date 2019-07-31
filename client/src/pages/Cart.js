@@ -2,27 +2,47 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import API from "../utils/API";
 import { removeItem } from '../Components/actions/cartActions'
-//{ removeItem,addQuantity,subtractQuantity}**removed from line above if we need to add back
-
 import { Input, FormBtn } from "../Components/Form";
 //date picker css and packages
 import DatePicker from 'react-datepicker';
 import { setMinutes, setHours } from 'date-fns'
 import "react-datepicker/dist/react-datepicker.css";
 
-class Cart extends Component {
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
-    //to remove the item completely
-    handleRemove = (id) => {
-        this.props.removeItem(id);
-    }
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+  
+  class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: null
+            isOpen: false,
+            User: {},
+            startDate: "", 
+            vehicleMake: "",
+            vehicleModel: "",
+            vehicleLicence: "",
+            vehicleLocation: "",
         };
         this.handleChange = this.handleChange.bind(this);
+        // this.open = false;
+    }
+    
+    handleClose = () => {
+        this.setState({
+            isOpen: false,
+        });
+    }
+     
+    //to remove the item completely
+    handleRemove = (id) => {
+        this.props.removeItem(id);
     }
 
     handleChange(date) {
@@ -30,17 +50,6 @@ class Cart extends Component {
             startDate: date
         });
     }
-    //form info
-    state = {
-        // User: [],
-        startDate: "", //trying to grab the date value
-        firstName: "",
-        lastName: "",
-        carMake: "",
-        carModel: "",
-        licence: "",
-        location: ""
-    };
 
     componentDidMount() {
         this.loadUser();
@@ -64,15 +73,18 @@ class Cart extends Component {
         event.preventDefault();
         console.log("whats up hommies")
         console.log("Date " + this.state.startDate)
+        //dialog popup
+        this.setState({
+            isOpen: true,
+        });
+
         if (this.state.userName && this.state.password) {
             API.saveUser({
-                startDate: this.state.startDate, //trying to grab the date value
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                carMake: this.state.carMake,
-                carModel: this.state.carModel,
-                licence: this.state.licence,
-                location: this.state.location
+                startDate: this.state.startDate,
+                vehicleMake: this.state.vehicleMake,
+                vehicleModel: this.state.vehicleModel,
+                vehicleLicence: this.state.vehicleLicence,
+                vehicleLocation: this.state.vehicleLocation
             })
                 .then(res => this.loadUser())
                 .catch(err => console.log(err));
@@ -150,53 +162,57 @@ class Cart extends Component {
                             />
                             </div>
                             <Input
-                                value={this.state.firstName}
+                                value={this.state.vehicleMake}
                                 onChange={this.handleInputChange}
-                                name="firstName"
-                                placeholder="First Name (required)"
+                                name="vehicleMake"
+                                placeholder="Vehicle Make (required)"
                             />
                             <Input
-                                value={this.state.lastName}
+                                value={this.state.vehicleModel}
                                 onChange={this.handleInputChange}
-                                name="lastName"
-                                placeholder="Last Name (required)"
+                                name="vehicleModel"
+                                placeholder="Vehicle Model (required)"
                             />
                             <Input
-                                value={this.state.carMake}
+                                value={this.state.vehicleLicence}
                                 onChange={this.handleInputChange}
-                                name="carMake"
-                                placeholder="Car Make (required)"
-                            />
-                            <Input
-                                value={this.state.carModel}
-                                onChange={this.handleInputChange}
-                                name="carModel"
-                                placeholder="Car Model (required)"
-                            />
-                            <Input
-                                value={this.state.userLicencePlate}
-                                onChange={this.handleInputChange}
-                                name="licence"
+                                name="vehicleLicence"
                                 placeholder="Licence Plate Number (required)"
                             />
                             <Input
-                                value={this.state.userLocation}
+                                value={this.state.vehicleLocation}
                                 onChange={this.handleInputChange}
-                                name="location"
+                                name="vehicleLocation"
                                 placeholder="Location of Service (required)"
                             />
                             <FormBtn className="waves-effect waves-light btn checkout" 
-                                disabled={!(
-                                    this.state.firstName && 
-                                    this.state.lastName &&
-                                    this.state.carMake &&
-                                    this.state.carModel &&
-                                    this.state.licence &&
-                                    this.state.location
-                                    )}
+                                // disabled={!(
+                                //     this.state.vehicleMake &&
+                                //     this.state.vehicleModel &&
+                                //     this.state.vehicleLicence &&
+                                //     this.state.vehicleLocation
+                                //     )}
                                 onClick={this.handleCheckoutSubmit}>Checkout
                             </FormBtn>
                         </form>
+                        <Dialog
+                            open={this.state.isOpen}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={this.handleClose}
+                            aria-labelledby="alert-dialog-slide-title"
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle id="alert-dialog-slide-title"><h2>Appointment Confirmed!</h2></DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description">
+                                <h4>Vehicle Make: {`${this.state.vehicleMake}`}</h4>
+                                <h4>Vehicle Model: {`${this.state.vehicleModel}`}</h4>
+                                <h4>Vehicle Licence: {`${this.state.vehicleLicence}`}</h4>
+                                <h4>Service Location: {`${this.state.vehicleLocation}`}</h4>
+                            </DialogContentText>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </div>
