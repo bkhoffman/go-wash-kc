@@ -14,7 +14,7 @@ import { black } from "ansi-colors";
 // *eslint; no-unused-expressions; ["error", { "allowShortCircuit": true}]*
 var sectionStyle = {
     backgroundColor: "black",
-    backgroundImage: "url(https://thumbs.gfycat.com/NauticalAncientIndianglassfish-size_restricted.gif)"
+    backgroundImage: "url(https://media.tenor.com/images/e573603354be36b881822cf6f8f51316/tenor.gif)"
   };
 
 const Home = () => {
