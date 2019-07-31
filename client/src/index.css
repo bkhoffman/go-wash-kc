@@ -11,9 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
-
-.nav-wrapper {
-    background-color: rgb(17, 27, 119);
+.nav-wrapper{
+  color: white;
+  background-color: rgb(17, 27, 119);
 }
 
 .box {
@@ -79,7 +79,9 @@ code {
   border-width: 1px;
   border-color: blue;  */
 }
-
-.react-datepicker__input-container {
-    width: fit-content;
+.calBorder{
+  padding: 5%;
+}
+.MuiButton-label{
+  color: white;
 }
