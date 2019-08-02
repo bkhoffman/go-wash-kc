@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import cartReducer from './components/reducers';
+import cartReducer from './Components/Reducers';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
