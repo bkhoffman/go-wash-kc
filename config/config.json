@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "",
+        "password": "Jasper29!",
         "database": "gowashkc_db",
         "host": "localhost",
         "dialect": "mysql",
@@ -13,7 +13,7 @@
     },
     "test": {
         "username": "root",
-        "password": "",
+        "password": "Jasper29!",
         "database": "gowashkc_db",
         "host": "localhost",
         "dialect": "mysql",

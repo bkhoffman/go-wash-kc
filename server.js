@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const db = require('./models');
 const routes = require('./routes');
 const passport = require('./config/passport');
-const passportRoutes = ('./config/passportRoutes');
 const corsOptions = require('./config/cors.js');
 
 // added from redux example
