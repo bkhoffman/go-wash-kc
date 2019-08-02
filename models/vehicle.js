@@ -20,11 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     vehicle.associate = function(models) {
-        vehicle.belongsTo(models.Users, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        vehicle.belongsTo(models.Users);
         vehicle.hasMany(models.products, {
             onDelete: "cascade"
         });

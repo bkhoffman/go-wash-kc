@@ -11,7 +11,9 @@ router
     .route('/login')
     .post(authController.login);
 
-// router.route("/")
-//     .get(authController.);
+router
+    .use('/', passport.authenticate('local'))
+    .route('/')
+    .post(authController.login);
 
 module.exports = router;

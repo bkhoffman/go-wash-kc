@@ -29,6 +29,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
             vehicleModel: "",
             vehicleLicence: "",
             vehicleLocation: "",
+            userId: ""
         };
         this.handleChange = this.handleChange.bind(this);
         // this.open = false;
@@ -52,11 +53,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     }
 
     componentDidMount() {
-        API.getUser();
+      this.loadUser();
     }
 
     loadUser = () => {
-        API.getUser()
+        API.loadCartUser()
             .then(res => this.setState({ User: res.data }))
             .catch(err => console.log(err));
     };
@@ -71,7 +72,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     //Checkout button
     handleCheckoutSubmit = event => {
         event.preventDefault();
-        console.log("whats up hommies")
         console.log("Date " + this.state.startDate)
         //dialog popup
         this.setState({
@@ -79,12 +79,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
         });
 
         if (this.state.userName && this.state.password) {
-            API.saveUser({
+            API.saveVehicle({
                 startDate: this.state.startDate,
                 vehicleMake: this.state.vehicleMake,
                 vehicleModel: this.state.vehicleModel,
                 vehicleLicence: this.state.vehicleLicence,
-                vehicleLocation: this.state.vehicleLocation
+                vehicleLocation: this.state.vehicleLocation,
+                userID: this.state.userId
             })
                 .then(res => this.loadUser())
                 .catch(err => console.log(err));

@@ -46,7 +46,7 @@ class Login extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to = "/" />;
+      return <Redirect to = "/users" />;
     }
     if (this.state.alertmessage) {
       return (

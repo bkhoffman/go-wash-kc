@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 // import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import API from "utils/API";
 // import login from "../../pages/Login";
-
-import { Input, FormBtn } from "Components/Form";
+import { Redirect } from 'react-router-dom';
+import { Input, FormBtn } from "components/Form";
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -31,6 +31,7 @@ const TemporaryDrawer = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [alertMessage, setAlertMessage] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
     function handleDrawerOpen() {
         setOpen(true);
@@ -38,23 +39,25 @@ const TemporaryDrawer = () => {
 
     function handleDrawerClose() {
         setOpen(false);
+
     }
 
     const handleFormSubmit = event => {
         event.preventDefault();
         if (email && password) {
-            API.getUser({
+            API.loginUser({
                 email: email,
                 password: password,
             })
             .then(({ data: user}) => {
                 API.localSetUser(user);
+                setLoggedIn(true);
                 handleDrawerClose()
               })
-              .catch(err => {
-                alert()
-                console.log(err)
-              });
+            .catch(err => {
+              alert()
+              console.log(err)
+            });
         }
     };
 
@@ -62,8 +65,16 @@ const TemporaryDrawer = () => {
        setAlertMessage(true);
       }
 
+    if (loggedIn) {
+      return <Redirect to = "/users" />;
+    }
+
+    if (alertMessage) {
+        return <Redirect to = "/login" />;
+    }
 
     const sideList = side => (
+        
         <div
             className={classes.list}
             role="presentation"
@@ -94,8 +105,6 @@ const TemporaryDrawer = () => {
             </form>
         </div>
     );
-
-
 
     return (
 

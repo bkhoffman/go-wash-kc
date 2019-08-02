@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
-import { Input, FormBtn } from "../Components/Form";
+import { Input, FormBtn } from "../components/Form";
 import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
@@ -19,6 +19,7 @@ class SignUp extends Component {
         vehicleMake: "",
         vehicleModel: "",
         vehicleLicense: "",
+        userId: ""
       };
 
       handleInputChange = event => {
@@ -28,11 +29,12 @@ class SignUp extends Component {
         });
       };
     
-      handleFormSubmit = event => {
+      handleFormSubmit  = async event => {
         event.preventDefault();
         // console.log('signUpForm, userName')
         if (this.state.userName && this.state.password) {
-          API.saveUser({
+        try {
+          const {data: user} = await API.saveUser({
             userName: this.state.userName,
             password: this.state.password,
             firstName: this.state.firstName,
@@ -40,22 +42,27 @@ class SignUp extends Component {
             address: this.state.address,
             phone: this.state.phone,
             email: this.state.email
-          })
-            .then(API.saveVehicle({
-              vehicleMake: this.state.vehicleMake,
-              vehicleModel: this.state.vehicleModel,
-              vehicleLicense: this.state.vehicleLicense
-            }))
-            .then(({data: user}) => {
-              API.localSetUser(user);
-              this.setState({
-                signedUp: true
-              });
-            })
-            .catch((err) => {
-              this.alertMsg()
-              console.log('err.msg', err.response.data.msg);
+          });
+
+          await API.localSetUser(user);
+            this.setState({
+              signedUp: true,
+              userId: user.id
             });
+
+          console.log(this.state.userId);
+
+          await API.saveVehicle({
+            vehicleMake: this.state.vehicleMake,
+            vehicleModel: this.state.vehicleModel,
+            vehicleLicense: this.state.vehicleLicense,
+            userId: this.state.userId
+          })
+          } catch (err) {
+            this.alertMsg()
+            console.log('err.msg', err.response.data.msg);
+          }
+
         }
       };
 
@@ -67,7 +74,7 @@ class SignUp extends Component {
     
       render() {
         if (this.state.signedUp) {
-          return <Redirect to = "/" />;
+          return <Redirect to = "/packages" />;
         }
         if (this.state.alertmessage) {
 
