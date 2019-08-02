@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const db = require('./models');
 const routes = require('./routes');
 const passport = require('./config/passport');
-const passportRoutes = ('./config/passportRoutes');
 const corsOptions = require('./config/cors.js');
 
 // added from redux example
@@ -74,7 +73,7 @@ db.sequelize
     .authenticate()
     .then(() => {
         // change force to ({ force: FORCE_SCHEMA}) to prevent reset of MySQL database
-        db.sequelize.sync({ force: FORCE_SCHEMA }).then(() => {
+        db.sequelize.sync({ force: true }).then(() => {
             console.log(`🌎 ==> API server now on port ${PORT}!`); // eslint-disable-line no-console
             app.emit('appStarted');
         });
