@@ -1,5 +1,5 @@
 {
-    "name": "TBD",
+    "name": "GoWashKC",
     "version": "1.0.0",
     "description": "TBD",
     "author": "TBD",
@@ -12,7 +12,7 @@
         "type": "git",
         "url": "git+https://github.com/TBD"
     },
-    "homepage": "TBD",
+    "homepage": "https://go-wash-kc.herokuapp.com/",
     "scripts": {
         "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
         "start:prod": "node server.js",
