@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
-import { Input, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../Components/Form";
 import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
