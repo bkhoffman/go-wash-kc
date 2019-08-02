@@ -117,7 +117,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                             <div className="item-desc">
                                 <span className="title">{item.title}</span>
                                 <p>{item.desc}</p>
-                                <p><b>Price: {item.price}$</b></p>
+                                <p><b>Price: ${item.price}</b></p>
                                 <button className="waves-effect waves-light btn pink remove" onClick={() => { this.handleRemove(item.id) }}>Remove</button>
                             </div>
 
