@@ -5,7 +5,9 @@
     "author": "TBD",
     "license": "MIT",
     "main": "server.js",
-    "engines": {},
+    "engines": {
+        "node": "12.x"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/TBD"
