@@ -45,24 +45,24 @@ class SignUp extends Component {
           });
 
           await API.localSetUser(user);
-            this.setState({
-              signedUp: true,
-              userId: user.id
-            });
-
+          this.setState({
+            // signedUp: true,
+            userId: user.id
+          });
           console.log(this.state.userId);
-
-          await API.saveVehicle({
+          const vehicle = await API.saveVehicle({
             vehicleMake: this.state.vehicleMake,
             vehicleModel: this.state.vehicleModel,
             vehicleLicense: this.state.vehicleLicense,
             userId: this.state.userId
           })
-          } catch (err) {
-            this.alertMsg()
-            console.log('err.msg', err.response.data.msg);
+          if (user && vehicle) {
+            window.location.replace('/packages')
           }
-
+        } catch (err) {
+          this.alertMsg()
+          console.log('err.msg', err.response.data.msg);
+        }
         }
       };
 

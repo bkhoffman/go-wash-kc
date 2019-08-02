@@ -3,11 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from "@material-ui/core/Paper";
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 import { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import cartReducer from '../components/reducers/cartReducer'
-import { addToCart } from '../components/actions/cartActions'
 import API from "utils/API";
 import { withStyles } from '@material-ui/styles';
 
