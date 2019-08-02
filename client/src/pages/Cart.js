@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import API from "../utils/API";
-import { removeItem } from '../components/actions/cartActions'
-import { Input, FormBtn } from "../components/Form";
+import { removeItem } from '../Components/actions/cartActions'
+import { Input, FormBtn } from "../Components/Form";
 //date picker css and packages
 import DatePicker from 'react-datepicker';
 import { setMinutes, setHours } from 'date-fns'
