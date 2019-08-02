@@ -19,8 +19,8 @@ export default {
     loginUser: function(user) {
         return axios.post("./api/v1/auth/", user);
     },
-    loadCartUser: function(user) {
-        return axios.post("./api/v1/auth/cart", user);
+    loadCartUser: function() {
+        return axios.post("./api/v1/auth/cart");
     },
     // Saves a user to the database
     saveUser: function(user, vehicle) {
